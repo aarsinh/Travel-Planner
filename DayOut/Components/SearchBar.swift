@@ -20,7 +20,7 @@ struct SearchBar: View {
                 TextField(placeholder, text: $text)
                 
                 if !text.isEmpty {
-                    Button(action: { self.text = "" }, label: {
+                    Button(action: { text = "" }, label: {
                         Image(systemName: "xmark.circle.fill")
                             .foregroundStyle(.gray)
                             .padding(.trailing, 25)

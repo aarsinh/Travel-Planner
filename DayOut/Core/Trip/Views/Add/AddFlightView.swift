@@ -26,6 +26,7 @@ struct AddFlightView: View {
     @State private var arrIata = ""
     @State private var depAirport: [Airport] = []
     @State private var arrAirport: [Airport] = []
+    
     private var tripStart: Date {
         viewModel.dateFormatter.date(from: trip.startDate) ?? Date.now
     }
@@ -135,6 +136,8 @@ struct AddFlightView: View {
                                                     startDate: departureDate,
                                                     flightNumber: flightNumber,
                                                     route: routeText,
+                                                    departureCity: depAirport[0].city,
+                                                    arrivalCity: arrAirport[0].city,
                                                     departureLocation: LocationCoordinates(latitude: Double(depAirport[0].latitude) ?? 0, longitude: Double(depAirport[0].longitude) ?? 0),
                                                     arrivalLocation: LocationCoordinates(latitude: Double(arrAirport[0].latitude) ?? 0, longitude: Double(arrAirport[0].longitude) ?? 0)
                                     )

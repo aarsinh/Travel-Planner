@@ -27,6 +27,7 @@ struct SearchAirlines: View {
             SearchBar(text: $query, placeholder: "Search Airlines")
                 
         }
+        
         List(airlines, id: \.self) { airline in
             Button {
                 viewModel.selectedAirline = "\(airline.name)(\(airline.iata))"

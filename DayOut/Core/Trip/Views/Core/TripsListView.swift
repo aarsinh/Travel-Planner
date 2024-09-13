@@ -19,7 +19,7 @@ struct TripsListView: View {
                 if loadingState == .loading {
                     ProgressView()
                 } else if trips.isEmpty {
-                    ContentUnavailableView("No trips added yet", systemImage: "map")
+                    ContentUnavailableView("No trips added yet", systemImage: "mappin.slash.circle.fill")
                 } else {
                     ZStack {
                         List(trips, id: \.self) { trip in
@@ -38,14 +38,10 @@ struct TripsListView: View {
                             .listRowSeparator(.hidden)
                             .foregroundStyle(.primary)
                         }
-                        //                    .listStyle(.plain)
+                        
                         
                         .scrollContentBackground(.hidden)
                         .padding(.horizontal)
-                        
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.gray.opacity(colorScheme == .light ? 0.3 : 0))
-                            .padding(.horizontal)
                     }
                     .padding(.top)
                     Spacer()

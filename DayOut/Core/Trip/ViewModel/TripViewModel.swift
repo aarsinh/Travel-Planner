@@ -84,8 +84,6 @@ class TripViewModel: NSObject, ObservableObject, MKLocalSearchCompleterDelegate 
                 completionHandler(nil, nil)
             }
         }
-        print("DEBUG: \(completion.title)")
-        print("DEBUG: \(completion.subtitle)")
     }
     
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
@@ -94,35 +92,61 @@ class TripViewModel: NSObject, ObservableObject, MKLocalSearchCompleterDelegate 
     
     func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: any Error) {
         print("DEBUG: Error with search completer: \(error.localizedDescription)")
+        if completer.queryFragment.isEmpty {
+            self.searchResults = []
+        }
     }
     
     func saveTrip(tripId: String, tripName name: String, coordinates: CLLocationCoordinate2D, startDate: String, endDate: String, plans: [Plan]) async throws {
-        try await userService.saveTrip(tripId: tripId, tripName: name, coordinates: coordinates, startDate: startDate, endDate: endDate, plans: [])
+        do {
+            try await userService.saveTrip(tripId: tripId, tripName: name, coordinates: coordinates, startDate: startDate, endDate: endDate, plans: [])
+        } catch {
+            self.error = error
+        }
     }
     
     func loadTrips() async throws -> [Trip] {
-        try await userService.loadTrips()
+        do {
+            return try await userService.loadTrips()
+        } catch {
+            self.error = error
+            throw error
+        }
     }
     
     
     func updatePlans(tripId: String, plan: Plan) async throws {
-        try await userService.updatePlans(plan: plan, tripId: tripId)
+        do {
+            try await userService.updatePlans(plan: plan, tripId: tripId)
+        } catch {
+            self.error = error
+        }
     }
     
     func fetchTripId(by tripId: String) async throws -> String? {
-        try await userService.fetchTripId(by: tripId)
+        do {
+            return try await userService.fetchTripId(by: tripId)
+        } catch {
+            self.error = error
+            throw error
+        }
     }
     
     func deleteTrip(withId id: String) async throws {
-        try await userService.deleteTrip(withId: id)
-    }
-    
-    func loadPlans(for trip: Trip) {
-        self.selectedTripPlans = trip.plans.sorted { $0.startDate < $1.startDate }
+        do {
+            try await userService.deleteTrip(withId: id)
+        } catch {
+            self.error = error
+        }
     }
     
     func refreshTrip(id: String) async throws -> Trip {
-        try await userService.refreshTrip(id: id)
+        do {
+            return try await userService.refreshTrip(id: id)
+        } catch {
+            self.error = error
+            throw error
+        }
     }
     
     @MainActor

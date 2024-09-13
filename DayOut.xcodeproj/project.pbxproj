@@ -50,6 +50,9 @@
 		5C3D9B462C9338CF006B2AD2 /* PlanAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3D9B452C9338CF006B2AD2 /* PlanAnnotation.swift */; };
 		5C3D9B482C933906006B2AD2 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3D9B472C933906006B2AD2 /* MapViewModel.swift */; };
 		5C3D9B4A2C93390B006B2AD2 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3D9B492C93390B006B2AD2 /* MapView.swift */; };
+		5C4FFA1B2C94B5A1002BD7BC /* PlanDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4FFA1A2C94B5A1002BD7BC /* PlanDetailView.swift */; };
+		5C4FFA1D2C94BC2B002BD7BC /* FlightDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4FFA1C2C94BC2B002BD7BC /* FlightDetailView.swift */; };
+		5C4FFA212C94C4A9002BD7BC /* AirportMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4FFA202C94C4A9002BD7BC /* AirportMapView.swift */; };
 		5C51E09B2C933809005A3B77 /* Airport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C51E09A2C933809005A3B77 /* Airport.swift */; };
 		5C5F2BAE2C93590000B1EA2C /* AirlineError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5F2BA82C93590000B1EA2C /* AirlineError.swift */; };
 		5C5F2BAF2C93590000B1EA2C /* AirlineService .swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5F2BA92C93590000B1EA2C /* AirlineService .swift */; };
@@ -126,6 +129,9 @@
 		5C3D9B452C9338CF006B2AD2 /* PlanAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanAnnotation.swift; sourceTree = "<group>"; };
 		5C3D9B472C933906006B2AD2 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		5C3D9B492C93390B006B2AD2 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		5C4FFA1A2C94B5A1002BD7BC /* PlanDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanDetailView.swift; sourceTree = "<group>"; };
+		5C4FFA1C2C94BC2B002BD7BC /* FlightDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightDetailView.swift; sourceTree = "<group>"; };
+		5C4FFA202C94C4A9002BD7BC /* AirportMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportMapView.swift; sourceTree = "<group>"; };
 		5C51E09A2C933809005A3B77 /* Airport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Airport.swift; sourceTree = "<group>"; };
 		5C5F2BA82C93590000B1EA2C /* AirlineError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirlineError.swift; sourceTree = "<group>"; };
 		5C5F2BA92C93590000B1EA2C /* AirlineService .swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AirlineService .swift"; sourceTree = "<group>"; };
@@ -174,6 +180,8 @@
 		5C1876432C948AFC00816366 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				5C4FFA1A2C94B5A1002BD7BC /* PlanDetailView.swift */,
+				5C4FFA1C2C94BC2B002BD7BC /* FlightDetailView.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -386,6 +394,7 @@
 			children = (
 				5C3D9B472C933906006B2AD2 /* MapViewModel.swift */,
 				5C3D9B492C93390B006B2AD2 /* MapView.swift */,
+				5C4FFA202C94C4A9002BD7BC /* AirportMapView.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -611,10 +620,13 @@
 				5C315C6D2C90ACD400C44F3D /* AddFlightView.swift in Sources */,
 				5C315C5B2C90ACD400C44F3D /* InputView.swift in Sources */,
 				5C5F2BAE2C93590000B1EA2C /* AirlineError.swift in Sources */,
+				5C4FFA1D2C94BC2B002BD7BC /* FlightDetailView.swift in Sources */,
 				5C315C702C90ACD400C44F3D /* AddTripView.swift in Sources */,
 				5C315C6F2C90ACD400C44F3D /* AddRestaurantView.swift in Sources */,
 				5C315C772C90ACD400C44F3D /* Airline.swift in Sources */,
+				5C4FFA212C94C4A9002BD7BC /* AirportMapView.swift in Sources */,
 				5C315C7B2C90ACD400C44F3D /* Trip.swift in Sources */,
+				5C4FFA1B2C94B5A1002BD7BC /* PlanDetailView.swift in Sources */,
 				5C315C692C90ACD400C44F3D /* SettingsViewModel.swift in Sources */,
 				5C315C682C90ACD400C44F3D /* SettingsView.swift in Sources */,
 				5C5F2BB42C93670E00B1EA2C /* LocationDetailView.swift in Sources */,

@@ -168,6 +168,8 @@ class UserService: ObservableObject {
             "phone": plan.phone ?? "",
             "flightNumber": plan.flightNumber ?? "" ,
             "route": plan.route ?? "",
+            "departureCity": plan.departureCity ?? "",
+            "arrivalCity": plan.arrivalCity ?? "",
             "location": [
                 "latitude": plan.location?.latitude ?? 0,
                 "longitude": plan.location?.longitude ?? 0

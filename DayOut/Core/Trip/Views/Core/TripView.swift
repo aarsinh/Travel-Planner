@@ -117,7 +117,11 @@ struct TripView: View {
                         }
                     }
                     .onAppear {
-                        viewModel.loadPlans(for: selectedTrip)
+                        Task {
+                            if let tripId = try await viewModel.fetchTripId(by: selectedTrip.id) {
+                                selectedTrip = try await viewModel.refreshTrip(id: tripId)
+                            }
+                        }
                     }
                 }
                 .fullScreenCover(isPresented: $addingPlans) {
@@ -128,7 +132,6 @@ struct TripView: View {
                                     selectedTrip = try await viewModel.refreshTrip(id: tripId)
                                 }
                             }
-                            print("DEBUG: Plans: \(viewModel.selectedTripPlans)")
                         }
                 }
                 
@@ -144,6 +147,7 @@ struct TripView: View {
                         NavigationLink(destination: MapView(plans: selectedTrip.plans)) {
                             Label("Map View", systemImage: "map")
                         }
+                        .disabled(selectedTrip.plans.isEmpty)
                         Button {
                             editingTrip = true
                         } label: {
