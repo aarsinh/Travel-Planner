@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C1876422C94813400816366 /* MapAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1876412C94813400816366 /* MapAnnotationView.swift */; };
 		5C30A8432C4FFD8100F790EF /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 5C30A8422C4FFD8100F790EF /* Kingfisher */; };
 		5C315C572C90ACD400C44F3D /* Day_OutApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C315C142C90ACD400C44F3D /* Day_OutApp.swift */; };
-		5C315C582C90ACD400C44F3D /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C315C162C90ACD400C44F3D /* Background.swift */; };
 		5C315C592C90ACD400C44F3D /* CustomList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C315C172C90ACD400C44F3D /* CustomList.swift */; };
 		5C315C5A2C90ACD400C44F3D /* CustomText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C315C182C90ACD400C44F3D /* CustomText.swift */; };
 		5C315C5B2C90ACD400C44F3D /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C315C192C90ACD400C44F3D /* InputView.swift */; };
@@ -21,7 +21,6 @@
 		5C315C612C90ACD400C44F3D /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C315C212C90ACD400C44F3D /* ForgotPasswordView.swift */; };
 		5C315C622C90ACD400C44F3D /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C315C222C90ACD400C44F3D /* LoginView.swift */; };
 		5C315C632C90ACD400C44F3D /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C315C232C90ACD400C44F3D /* SignUpView.swift */; };
-		5C315C642C90ACD400C44F3D /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C315C262C90ACD400C44F3D /* BaseView.swift */; };
 		5C315C652C90ACD400C44F3D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C315C272C90ACD400C44F3D /* ContentView.swift */; };
 		5C315C662C90ACD400C44F3D /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C315C292C90ACD400C44F3D /* NotificationsView.swift */; };
 		5C315C672C90ACD400C44F3D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C315C2A2C90ACD400C44F3D /* ProfileView.swift */; };
@@ -85,8 +84,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5C1876412C94813400816366 /* MapAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotationView.swift; sourceTree = "<group>"; };
 		5C315C142C90ACD400C44F3D /* Day_OutApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Day_OutApp.swift; sourceTree = "<group>"; };
-		5C315C162C90ACD400C44F3D /* Background.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		5C315C172C90ACD400C44F3D /* CustomList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomList.swift; sourceTree = "<group>"; };
 		5C315C182C90ACD400C44F3D /* CustomText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomText.swift; sourceTree = "<group>"; };
 		5C315C192C90ACD400C44F3D /* InputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
@@ -98,7 +97,6 @@
 		5C315C212C90ACD400C44F3D /* ForgotPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		5C315C222C90ACD400C44F3D /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		5C315C232C90ACD400C44F3D /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
-		5C315C262C90ACD400C44F3D /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		5C315C272C90ACD400C44F3D /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5C315C292C90ACD400C44F3D /* NotificationsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		5C315C2A2C90ACD400C44F3D /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -173,6 +171,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5C1876432C948AFC00816366 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
 		5C30A8412C4FFD8100F790EF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,7 +196,7 @@
 		5C315C1E2C90ACD400C44F3D /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				5C315C162C90ACD400C44F3D /* Background.swift */,
+				5C5F2BB32C93670E00B1EA2C /* LocationDetailView.swift */,
 				5C315C172C90ACD400C44F3D /* CustomList.swift */,
 				5C315C182C90ACD400C44F3D /* CustomText.swift */,
 				5C315C192C90ACD400C44F3D /* InputView.swift */,
@@ -199,6 +204,7 @@
 				5C315C1B2C90ACD400C44F3D /* ProfileImage.swift */,
 				5C315C1C2C90ACD400C44F3D /* SearchBar.swift */,
 				5C315C1D2C90ACD400C44F3D /* UnderlineTextField.swift */,
+				5C1876412C94813400816366 /* MapAnnotationView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -233,7 +239,6 @@
 		5C315C282C90ACD400C44F3D /* Root */ = {
 			isa = PBXGroup;
 			children = (
-				5C315C262C90ACD400C44F3D /* BaseView.swift */,
 				5C315C272C90ACD400C44F3D /* ContentView.swift */,
 			);
 			path = Root;
@@ -309,6 +314,7 @@
 		5C315C422C90ACD400C44F3D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5C1876432C948AFC00816366 /* Detail */,
 				5C315C382C90ACD400C44F3D /* Add */,
 				5C315C3B2C90ACD400C44F3D /* Core */,
 				5C315C412C90ACD400C44F3D /* Search */,
@@ -380,7 +386,6 @@
 			children = (
 				5C3D9B472C933906006B2AD2 /* MapViewModel.swift */,
 				5C3D9B492C93390B006B2AD2 /* MapView.swift */,
-				5C5F2BB32C93670E00B1EA2C /* LocationDetailView.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -588,7 +593,6 @@
 				5C315C722C90ACD400C44F3D /* TripView.swift in Sources */,
 				5C315C752C90ACD400C44F3D /* SearchAirlines.swift in Sources */,
 				5C3D9B482C933906006B2AD2 /* MapViewModel.swift in Sources */,
-				5C315C582C90ACD400C44F3D /* Background.swift in Sources */,
 				5C315C592C90ACD400C44F3D /* CustomList.swift in Sources */,
 				5C315C672C90ACD400C44F3D /* ProfileView.swift in Sources */,
 				5C315C662C90ACD400C44F3D /* NotificationsView.swift in Sources */,
@@ -600,6 +604,7 @@
 				5C5F2BB12C93590000B1EA2C /* LoadingState.swift in Sources */,
 				5C5F2BB22C93590000B1EA2C /* UserService.swift in Sources */,
 				5C315C792C90ACD400C44F3D /* Plan.swift in Sources */,
+				5C1876422C94813400816366 /* MapAnnotationView.swift in Sources */,
 				5C315C612C90ACD400C44F3D /* ForgotPasswordView.swift in Sources */,
 				5C315C602C90ACD400C44F3D /* AuthViewModel.swift in Sources */,
 				5C315C6C2C90ACD400C44F3D /* AddActivityView.swift in Sources */,
@@ -611,7 +616,6 @@
 				5C315C772C90ACD400C44F3D /* Airline.swift in Sources */,
 				5C315C7B2C90ACD400C44F3D /* Trip.swift in Sources */,
 				5C315C692C90ACD400C44F3D /* SettingsViewModel.swift in Sources */,
-				5C315C642C90ACD400C44F3D /* BaseView.swift in Sources */,
 				5C315C682C90ACD400C44F3D /* SettingsView.swift in Sources */,
 				5C5F2BB42C93670E00B1EA2C /* LocationDetailView.swift in Sources */,
 				5C5F2BAF2C93590000B1EA2C /* AirlineService .swift in Sources */,

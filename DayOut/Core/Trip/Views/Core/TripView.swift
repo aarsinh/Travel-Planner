@@ -141,7 +141,7 @@ struct TripView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Menu {
-                        NavigationLink(destination: MapView()) {
+                        NavigationLink(destination: MapView(plans: selectedTrip.plans)) {
                             Label("Map View", systemImage: "map")
                         }
                         Button {

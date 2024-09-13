@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import Day_Out
+@testable import DayOut
 
 final class Day_OutTests: XCTestCase {
 
