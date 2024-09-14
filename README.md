@@ -36,4 +36,5 @@ Travel Planner is an iOS application designed to help users keep track of their 
 - Map that shows all plans of the trip.
 - Search for airlines and flight number to get the route
 - Detail views for each of the plans
+  
 
