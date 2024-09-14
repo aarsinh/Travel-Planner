@@ -17,7 +17,7 @@ struct MapView: View {
 
     var body: some View {
         ZStack {
-            Map {
+            Map(position: $position) {
                 ForEach(viewModel.planAnnotations) { annotation in
                     let isSelected = annotation.id == selectedAnnotation?.id
                     if annotation.type == "Flight", let arrivalCoordinates = annotation.arrivalCoordinates {
@@ -59,7 +59,10 @@ struct MapView: View {
                 .animation(.default, value: selectedAnnotation)
                 .onChange(of: selectedAnnotation) { oldValue, newValue in
                     if let newAnnotation = newValue {
-                        viewModel.updateMapRegion(annotation: newAnnotation)
+                        withAnimation {
+                            viewModel.updateMapRegion(annotation: newAnnotation)
+                            position = .region(viewModel.region)
+                        }
                     }
                 }
             }

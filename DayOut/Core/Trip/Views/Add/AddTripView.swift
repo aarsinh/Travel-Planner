@@ -21,9 +21,6 @@ struct AddTripView: View {
     @State private var showEndDatePicker = false
     @State private var endDateText = ""
     
-    @State var isEditing = false
-    
-    
     var body: some View {
         NavigationStack {
             TextField("Trip Name*", text: $tripName)
@@ -98,7 +95,7 @@ struct AddTripView: View {
                 }
             }
             Spacer()
-                .navigationBarTitle(isEditing ? "Edit Trip" : "Add Trip", displayMode: .inline)
+                .navigationBarTitle("Add Trip", displayMode: .inline)
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
                         Button("Cancel") { dismiss() }

@@ -62,7 +62,7 @@ class TripViewModel: NSObject, ObservableObject, MKLocalSearchCompleterDelegate 
     
     //MARK: - functions
     func selectLocation(completion: MKLocalSearchCompletion, completionHandler: @escaping(CLLocationCoordinate2D?, String?) -> Void) {
-        self.selectedLocation = completion.title
+        self.selectedLocation = "\(completion.title), \(completion.subtitle)"
         
         let searchRequest = MKLocalSearch.Request(completion: completion)
         let search = MKLocalSearch(request: searchRequest)

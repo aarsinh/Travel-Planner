@@ -13,7 +13,6 @@ struct TripView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var viewModel: TripViewModel
     @State private var addingPlans = false
-    @State private var editingTrip = false
     @State private var tripPlans: [Plan] = []
     @State private var tripId: String = ""
 
@@ -120,10 +119,6 @@ struct TripView: View {
                             }
                         }
                 }
-                
-                .fullScreenCover(isPresented: $editingTrip) {
-                    AddTripView(isEditing: true)
-                }
             }
             
             .navigationTitle(selectedTrip.tripName)
@@ -134,11 +129,6 @@ struct TripView: View {
                             Label("Map View", systemImage: "map")
                         }
                         .disabled(selectedTrip.plans.isEmpty)
-                        Button {
-                            editingTrip = true
-                        } label: {
-                            Label("Edit Details", systemImage: "square.and.pencil")
-                        }
                         
                         Button(role: .destructive) {
                             Task {
