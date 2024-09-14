@@ -15,6 +15,7 @@ struct SignUpView: View {
     @State private var fullName = ""
     @State private var password = ""
     @State private var confirmPassword = "" 
+    @State private var showErrorAlert = false
     @State private var loadingState: LoadingState = .idle
     
     var body: some View {
@@ -94,7 +95,14 @@ struct SignUpView: View {
                     .frame(width: proxy.size.width, height: proxy.size.height)
                 }
             }
-            
+            .onReceive(viewModel.$error) { error in
+                if error != nil {
+                    showErrorAlert = true
+                }
+            }
+            .alert(isPresented: $showErrorAlert) {
+                Alert(title: Text("Error"), message: Text(viewModel.error?.localizedDescription ?? "Unknown Error"))
+            }
             if loadingState == .loading {
                 SavingView(text: "Signing Up...")
             }

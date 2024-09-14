@@ -71,6 +71,7 @@ struct AddPlanView: View {
             }
             .onAppear(perform: {
                 viewModel.shouldDismissToTripView = false
+                viewModel.error = nil
             })
             .navigationBarTitle("Add a plan", displayMode: .inline)
             .toolbar {

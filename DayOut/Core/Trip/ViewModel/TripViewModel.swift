@@ -74,8 +74,8 @@ class TripViewModel: NSObject, ObservableObject, MKLocalSearchCompleterDelegate 
                     placemark.name,
                     placemark.subLocality,
                     placemark.locality,
-                    placemark.administrativeArea,
                     placemark.postalCode,
+                    placemark.administrativeArea,
                     placemark.country
                 ]
                     .compactMap{ $0 }

@@ -24,7 +24,7 @@ struct SearchLocationView: View {
                 }
                 dismiss()
             }) {
-                Text(result.title)
+                Text("\(result.title), \(result.subtitle)")
             }
             .buttonStyle(.plain)
             

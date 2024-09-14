@@ -9,9 +9,11 @@ import SwiftUI
 
 struct ForgotPasswordView: View {
     @EnvironmentObject var userService: UserService
+    @EnvironmentObject var viewModel: AuthViewModel
     @Environment(\.dismiss) var dismiss
     @State private var email = ""
     @State private var showSentAlert = false
+    @State private var showErrorAlert = false
     
     var body: some View {
         GeometryReader { proxy in
@@ -49,6 +51,14 @@ struct ForgotPasswordView: View {
                 }
                 
                 Spacer()
+            }
+            .onReceive(viewModel.$error, perform: { error in
+                if error != nil {
+                    showErrorAlert = true
+                }
+            })
+            .alert(isPresented: $showErrorAlert) {
+                Alert(title: Text("Alert"), message: Text("\(viewModel.error?.localizedDescription ?? "Unknown Error")"))
             }
             .alert("Email Sent!", isPresented: $showSentAlert) {
                 Button("Back to Login") { dismiss() }

@@ -61,6 +61,7 @@ struct SearchAirlines: View {
                 viewModel.airlineIcao = ""
                 airlines = []
                 query = ""
+                viewModel.error = nil
             }
     }
 }

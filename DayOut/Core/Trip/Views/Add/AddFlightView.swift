@@ -75,23 +75,25 @@ struct AddFlightView: View {
                 
                 TextField("Flight Number*", text: $flightNumber)
                     .onChange(of: flightNumber, { oldValue, newValue in
-                        routeText = ""
-                        route = nil
-                        typingTimer?.invalidate()
-                        typingTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { timer in
-                            Task {
-                                do {
-                                    route = try await viewModel.fetchRoute(airlineIcao: viewModel.airlineIcao, flightNumber: flightNumber)
-                                    if let route = route {
-                                        depIata = route.response.flightroute.origin.iataCode
-                                        arrIata = route.response.flightroute.destination.iataCode
-                                        routeText = "\(depIata) - \(arrIata)"
+                        if !newValue.isEmpty {
+                            routeText = ""
+                            route = nil
+                            typingTimer?.invalidate()
+                            typingTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { timer in
+                                Task {
+                                    do {
+                                        route = try await viewModel.fetchRoute(airlineIcao: viewModel.airlineIcao, flightNumber: flightNumber)
+                                        if let route = route {
+                                            depIata = route.response.flightroute.origin.iataCode
+                                            arrIata = route.response.flightroute.destination.iataCode
+                                            routeText = "\(depIata) - \(arrIata)"
+                                        }
+                                    } catch {
+                                        showFlightUnavailableView = true
                                     }
-                                } catch {
-                                    showFlightUnavailableView = true
                                 }
-                            }
-                        })
+                            })
+                        }
                     })
                 
                 if route != nil {
@@ -108,18 +110,18 @@ struct AddFlightView: View {
                     .padding()
                 } else if showFlightUnavailableView {
                     HStack {
-                        VStack {
+                        VStack(alignment: .leading) {
                             Text("Route")
                                 .bold()
                             
                             Text("Flight details unavailable")
                         }
+                        .padding()
                         Spacer()
                     }
                 }
                 
                 Spacer()
-                
                     .toolbar {
                         ToolbarItem(placement: .topBarLeading) {
                             Button("Cancel") { dismiss() }
@@ -160,10 +162,21 @@ struct AddFlightView: View {
             .onReceive(viewModel.$error, perform: { error in
                 if error != nil {
                     viewModel.showErrorAlert = true
+                    saveState = .idle
+                    flightNumber = ""
                 }
             })
             .alert(isPresented: $viewModel.showErrorAlert) {
-                Alert(title: Text("Error"), message: Text(viewModel.error?.localizedDescription ?? "Unknown error."))
+                Alert(
+                    title: Text("Error"),
+                    message: Text(viewModel.error?.localizedDescription ?? "Unknown error."),
+                    dismissButton: .default(Text("OK")) {
+                        viewModel.error = nil
+                        saveState = .idle
+                        routeText = ""
+                        route = nil
+                    }
+                )
             }
             .padding(.top)
             .onAppear {
@@ -171,6 +184,7 @@ struct AddFlightView: View {
                 departureDate = viewModel.dateFormatter.date(from: departureDateText) ?? Date.now
                 viewModel.address = ""
                 viewModel.selectedAirline = ""
+                viewModel.error = nil
             }
             .textFieldStyle(UnderlineTextField())
             
@@ -184,7 +198,8 @@ struct AddFlightView: View {
 extension AddFlightView: AddPlanProtocol {
     var formIsValid: Bool {
         !viewModel.selectedAirline.isEmpty &&
-        !departureDateText.isEmpty
+        !departureDateText.isEmpty &&
+        !flightNumber.isEmpty
     }
 }
 #Preview {

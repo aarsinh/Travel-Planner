@@ -151,6 +151,7 @@
 		5C65FF6E2C4E634500F5FB04 /* DayOutUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DayOutUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C65FF722C4E634500F5FB04 /* Day_OutUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day_OutUITests.swift; sourceTree = "<group>"; };
 		5C65FF742C4E634500F5FB04 /* Day_OutUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day_OutUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		5C7270EE2C96033800BE4950 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -386,6 +387,7 @@
 		5C315C562C90ACD400C44F3D /* DayOut */ = {
 			isa = PBXGroup;
 			children = (
+				5C7270EE2C96033800BE4950 /* Info.plist */,
 				5C5F2BAD2C93590000B1EA2C /* Services */,
 				5C315C4B2C90ACD400C44F3D /* Model */,
 				5C315C1E2C90ACD400C44F3D /* Components */,
@@ -818,6 +820,7 @@
 				DEVELOPMENT_TEAM = H9N7JPN6RT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DayOut/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -847,6 +850,7 @@
 				DEVELOPMENT_TEAM = H9N7JPN6RT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DayOut/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

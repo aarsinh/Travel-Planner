@@ -73,6 +73,7 @@ struct SettingsView: View {
                         }
                     }
                 }
+                .navigationTitle("Settings")
                 .scrollContentBackground(.hidden)
                 .photosPicker(isPresented: $settingsViewModel.showPhotosPicker, selection: $settingsViewModel.selectedImage)
             }

@@ -28,7 +28,7 @@ struct SearchAddressView: View {
                     dismiss()
                 }
                 
-            }) { Text(result.title) }
+            }) { Text("\(result.title), \(result.subtitle)") }
                 .buttonStyle(.plain)
         }
         .onReceive(viewModel.$error, perform: { error in
