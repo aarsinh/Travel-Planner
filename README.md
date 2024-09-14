@@ -1,7 +1,7 @@
 # Travel Planner
 Travel Planner is an iOS application designed to help users keep track of their plans on holiday. The app leverages SwiftUI for the user interface and integrates with Firebase for backend services.
 
-<img src="https://github.com/user-attachments/assets/1900ae57-1d2d-4347-bcd2-6c5d0aedc173" width="100">
+<img src="https://github.com/user-attachments/assets/1900ae57-1d2d-4347-bcd2-6c5d0aedc173" width="200">
 
 
 ## Requirements
