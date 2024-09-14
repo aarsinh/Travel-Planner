@@ -29,6 +29,14 @@ struct SearchLocationView: View {
             .buttonStyle(.plain)
             
         }
+        .onReceive(viewModel.$error, perform: { error in
+            if error != nil {
+                viewModel.showErrorAlert = true
+            }
+        })
+        .alert(isPresented: $viewModel.showErrorAlert) {
+            Alert(title: Text("Error"), message: Text(viewModel.error?.localizedDescription ?? "Unknown error."))
+        }
         .scrollContentBackground(.hidden)
         .onAppear {
             viewModel.searchResults = []

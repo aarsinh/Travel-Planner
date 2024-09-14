@@ -115,6 +115,14 @@ struct AddTripView: View {
                     }
                 }
         }
+        .onReceive(viewModel.$error, perform: { error in
+            if error != nil {
+                viewModel.showErrorAlert = true
+            }
+        })
+        .alert(isPresented: $viewModel.showErrorAlert) {
+            Alert(title: Text("Error"), message: Text(viewModel.error?.localizedDescription ?? "Unknown error."))
+        }
         .onAppear {
             viewModel.address = ""
         }

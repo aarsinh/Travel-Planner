@@ -15,79 +15,88 @@ struct SignUpView: View {
     @State private var fullName = ""
     @State private var password = ""
     @State private var confirmPassword = "" 
+    @State private var loadingState: LoadingState = .idle
     
     var body: some View {
-        NavigationStack {
-            GeometryReader { proxy in
-                VStack {
-                    Spacer()
-                    // form fields
-                    VStack(alignment: .trailing, spacing: 15) {
-                        InputView(text: $email, placeholder: "Email", icon: Image(systemName: "envelope"))
-                            .textInputAutocapitalization(.none)
-                        
-                        InputView(text: $fullName, placeholder: "Full Name", icon: Image(systemName: "person"))
-                            .textInputAutocapitalization(.words)
-                        
-                        InputView(text: $password, placeholder: "Password", isSecureField: true, icon: Image(systemName: "lock"))
-                        
-                        ZStack(alignment: .trailing) {
-                            InputView(text: $confirmPassword, placeholder: "Confirm Password", isSecureField: true)
+        ZStack {
+            NavigationStack {
+                GeometryReader { proxy in
+                    VStack {
+                        Spacer()
+                        // form fields
+                        VStack(alignment: .trailing, spacing: 15) {
+                            InputView(text: $email, placeholder: "Email", icon: Image(systemName: "envelope"))
+                                .textInputAutocapitalization(.none)
                             
-                            if !password.isEmpty && !confirmPassword.isEmpty {
-                                if password == confirmPassword {
-                                    Image(systemName: "checkmark.circle.fill")
-                                        .imageScale(.large)
-                                        .fontWeight(.bold)
-                                        .foregroundStyle(.green)
-                                        .padding([.trailing, .bottom], 17)
-                                } else {
-                                    Image(systemName: "xmark.circle.fill")
-                                        .imageScale(.large)
-                                        .fontWeight(.bold)
-                                        .foregroundStyle(.red)
-                                        .padding([.trailing, .bottom], 17)
+                            InputView(text: $fullName, placeholder: "Full Name", icon: Image(systemName: "person"))
+                                .textInputAutocapitalization(.words)
+                            
+                            InputView(text: $password, placeholder: "Password", isSecureField: true, icon: Image(systemName: "lock"))
+                            
+                            ZStack(alignment: .trailing) {
+                                InputView(text: $confirmPassword, placeholder: "Confirm Password", isSecureField: true)
+                                
+                                if !password.isEmpty && !confirmPassword.isEmpty {
+                                    if password == confirmPassword {
+                                        Image(systemName: "checkmark.circle.fill")
+                                            .imageScale(.large)
+                                            .fontWeight(.bold)
+                                            .foregroundStyle(.green)
+                                            .padding([.trailing, .bottom], 17)
+                                    } else {
+                                        Image(systemName: "xmark.circle.fill")
+                                            .imageScale(.large)
+                                            .fontWeight(.bold)
+                                            .foregroundStyle(.red)
+                                            .padding([.trailing, .bottom], 17)
+                                    }
                                 }
                             }
                         }
-                    }
-                    .padding(.horizontal)
-                
-                    Button {
-                        Task {
-                            try await viewModel.createUser(email: email, password: password, fullname: fullName)
+                        .padding(.horizontal)
+                        
+                        Button {
+                            loadingState = .loading
+                            Task {
+                                try await viewModel.createUser(email: email, password: password, fullname: fullName)
+                                loadingState = .loaded
+                            }
+                        } label: {
+                            HStack {
+                                Text("Sign Up")
+                                    .fontWeight(.semibold)
+                                Image(systemName: "arrow.right")
+                            }
+                            .foregroundStyle(.white)
+                            .frame(width: max(proxy.size.width - 45, 0), height: 50)
+                            .background(.blue)
+                            .clipShape(.rect(cornerRadius: 10))
+                            .padding(.top)
                         }
-                    } label: {
-                        HStack {
-                            Text("Sign Up")
-                                .fontWeight(.semibold)
-                            Image(systemName: "arrow.right")
+                        .disabled(!formIsValid)
+                        .opacity(formIsValid ? 1 : 0.5)
+                        
+                        Spacer()
+                        
+                        NavigationLink {
+                            LoginView()
+                                .navigationBarBackButtonHidden()
+                        } label: {
+                            HStack(spacing: 3) {
+                                Text("Already have an account?")
+                                Text("Sign in")
+                                    .bold()
+                            }
+                            .font(.system(size: 15))
                         }
-                        .foregroundStyle(.white)
-                        .frame(width: max(proxy.size.width - 45, 0), height: 50)
-                        .background(.blue)
-                        .clipShape(.rect(cornerRadius: 10))
-                        .padding(.top)
+                        
                     }
-                    .disabled(!formIsValid)
-                    .opacity(formIsValid ? 1 : 0.5)
-                    
-                    Spacer()
-                    
-                    NavigationLink {
-                        LoginView()
-                            .navigationBarBackButtonHidden()
-                    } label: {
-                        HStack(spacing: 3) {
-                            Text("Already have an account?")
-                            Text("Sign in")
-                                .bold()
-                        }
-                        .font(.system(size: 15))
-                    }
-                    
+                    .frame(width: proxy.size.width, height: proxy.size.height)
                 }
-                .frame(width: proxy.size.width, height: proxy.size.height)
+            }
+            
+            if loadingState == .loading {
+                SavingView(text: "Signing Up...")
             }
         }
     }

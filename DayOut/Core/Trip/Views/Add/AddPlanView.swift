@@ -41,6 +41,14 @@ struct AddPlanView: View {
                     }
                 Spacer()
             }
+            .onReceive(viewModel.$error, perform: { error in
+                if error != nil {
+                    viewModel.showErrorAlert = true
+                }
+            })
+            .alert(isPresented: $viewModel.showErrorAlert) {
+                Alert(title: Text("Error"), message: Text(viewModel.error?.localizedDescription ?? "Unknown error."))
+            }
             .onChange(of: viewModel.shouldDismissToTripView, { oldValue, newValue in
                 if newValue {
                     dismiss()

@@ -22,7 +22,7 @@ struct AddAccommodationView: View {
     @State private var showingCheckoutDate = false
     @State private var phoneNumber = ""
     @State private var email = ""
-    
+    @State private var saveState: SaveState = .idle
     
     
     private var tripStart: Date {
@@ -102,10 +102,12 @@ struct AddAccommodationView: View {
                     ToolbarItem(placement: .topBarTrailing) {
                         Button("Save") {
                             Task {
+                                saveState = .saving
                                 if let tripId = try await viewModel.fetchTripId(by: trip.id) {
                                     let plan = Plan(id: UUID().uuidString, type: "Accommodation", name: accommodationName, startDate: checkinDate, endDate: checkoutDate, address: viewModel.address, email: email, phone: phoneNumber, location: LocationCoordinates(latitude: viewModel.selectedCoordinates.latitude, longitude: viewModel.selectedCoordinates.longitude))
                                     try await viewModel.updatePlans(tripId: tripId ,plan: plan)
                                     viewModel.shouldDismissToTripView = true
+                                    saveState = .saved
                                 }
                             }
                             
@@ -116,6 +118,14 @@ struct AddAccommodationView: View {
                 }
                 .navigationBarTitle("Accommodation", displayMode: .inline)
         }
+        .onReceive(viewModel.$error, perform: { error in
+            if error != nil {
+                viewModel.showErrorAlert = true
+            }
+        })
+        .alert(isPresented: $viewModel.showErrorAlert) {
+            Alert(title: Text("Error"), message: Text(viewModel.error?.localizedDescription ?? "Unknown error."))
+        }
         .padding(.top)
         .textFieldStyle(UnderlineTextField())
         .onAppear {
@@ -124,6 +134,10 @@ struct AddAccommodationView: View {
             checkoutDateText = trip.endDate
             checkoutDate = viewModel.dateFormatter.date(from: checkoutDateText) ?? Date.now
             viewModel.address = ""
+        }
+        
+        if saveState == .saving {
+            SavingView(text: "Saving...")
         }
     }
 }

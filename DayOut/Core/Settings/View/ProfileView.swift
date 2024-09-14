@@ -12,6 +12,7 @@ struct ProfileView: View {
     @EnvironmentObject var userService: UserService
     
     @State private var showDeleteAlert = false
+    @State private var showErrorAlert = false
     var body: some View {
             NavigationStack {
                 if let user = userService.currentUser {
@@ -44,11 +45,13 @@ struct ProfileView: View {
                             .padding(.horizontal)
                         
                         List {
+                            
                             Text("Change Password")
                             Button(role: .destructive) {
                                 showDeleteAlert = true
                             } label: {
-                                HStack {
+                                HStack(spacing: 10) {
+                                    Image(systemName: "x.circle.fill")
                                     Text("Delete account")
                                 }
                             }

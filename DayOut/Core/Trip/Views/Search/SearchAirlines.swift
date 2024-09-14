@@ -13,7 +13,6 @@ struct SearchAirlines: View {
     
     @State private var query = ""
     @State private var airlines: [Airline] = []
-    @State private var showAlert = false
     @State private var loadingState: LoadingState = .loading
     var body: some View {
         ZStack {
@@ -38,14 +37,14 @@ struct SearchAirlines: View {
             }
             .buttonStyle(.plain)
         }
-        .onReceive(viewModel.$error) { error in
+        .onReceive(viewModel.$error, perform: { error in
             if error != nil {
-                showAlert = true
+                viewModel.showErrorAlert = true
             }
-        }
-        .alert(isPresented: $showAlert, content: {
-            Alert(title: Text("Error"), message: Text(viewModel.error?.localizedDescription ?? "Unknown Error"))
         })
+        .alert(isPresented: $viewModel.showErrorAlert) {
+            Alert(title: Text("Error"), message: Text(viewModel.error?.localizedDescription ?? "Unknown error."))
+        }
             .scrollContentBackground(.hidden)
             .onChange(of: query){ _, newValue in
                 if !newValue.isEmpty {
@@ -53,6 +52,8 @@ struct SearchAirlines: View {
                         airlines = try await viewModel.fetchAirlines(query: newValue)
                         loadingState = .loaded
                     }
+                } else {
+                    airlines = []
                 }
             }
             .onAppear {

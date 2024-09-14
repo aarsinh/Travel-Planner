@@ -76,18 +76,6 @@ struct SettingsView: View {
                                 Text("Sign out")
                             }
                         }
-                        
-                        Button(role: .destructive) {
-                            Task {
-                                try await settingsViewModel.delete()
-                            }
-                        } label: {
-                            HStack {
-                                Image(systemName: "x.circle.fill")
-                                    .tint(.red)
-                                Text("Delete account")
-                            }
-                        }
                     }
                 }
                 .scrollContentBackground(.hidden)

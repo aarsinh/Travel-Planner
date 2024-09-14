@@ -11,6 +11,8 @@ struct ForgotPasswordView: View {
     @EnvironmentObject var userService: UserService
     @Environment(\.dismiss) var dismiss
     @State private var email = ""
+    @State private var showSentAlert = false
+    
     var body: some View {
         GeometryReader { proxy in
             VStack {
@@ -20,6 +22,7 @@ struct ForgotPasswordView: View {
                 
                 Button {
                     userService.resetPassword(withEmail: email)
+                    showSentAlert = true
                 } label: {
                     Text("Continue")
                         .foregroundStyle(.white)
@@ -44,6 +47,11 @@ struct ForgotPasswordView: View {
                 }
                 
                 Spacer()
+            }
+            .alert("Email Sent!", isPresented: $showSentAlert) {
+                Button("Back to Login") { dismiss() }
+            } message: {
+                Text("An email has been sent to your registered mail. Please change your psasword and login.")
             }
             .padding()
         }

@@ -39,6 +39,7 @@ class TripViewModel: NSObject, ObservableObject, MKLocalSearchCompleterDelegate 
     @Published var selectedTripPlans: [Plan] = []
     @Published var trips: [Trip] = []
     @Published var shouldDismissToTripView = false
+    @Published var showErrorAlert = false
     private var completer: MKLocalSearchCompleter
     
     var dateFormatter: DateFormatter {

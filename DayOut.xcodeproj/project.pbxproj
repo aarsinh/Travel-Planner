@@ -50,6 +50,8 @@
 		5C3D9B462C9338CF006B2AD2 /* PlanAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3D9B452C9338CF006B2AD2 /* PlanAnnotation.swift */; };
 		5C3D9B482C933906006B2AD2 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3D9B472C933906006B2AD2 /* MapViewModel.swift */; };
 		5C3D9B4A2C93390B006B2AD2 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3D9B492C93390B006B2AD2 /* MapView.swift */; };
+		5C404B522C95A1D0002F6C50 /* SaveState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C404B512C95A1D0002F6C50 /* SaveState.swift */; };
+		5C404B542C95A3FA002F6C50 /* SavingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C404B532C95A3FA002F6C50 /* SavingView.swift */; };
 		5C4FFA1B2C94B5A1002BD7BC /* PlanDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4FFA1A2C94B5A1002BD7BC /* PlanDetailView.swift */; };
 		5C4FFA1D2C94BC2B002BD7BC /* FlightDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4FFA1C2C94BC2B002BD7BC /* FlightDetailView.swift */; };
 		5C4FFA212C94C4A9002BD7BC /* AirportMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4FFA202C94C4A9002BD7BC /* AirportMapView.swift */; };
@@ -129,6 +131,8 @@
 		5C3D9B452C9338CF006B2AD2 /* PlanAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanAnnotation.swift; sourceTree = "<group>"; };
 		5C3D9B472C933906006B2AD2 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		5C3D9B492C93390B006B2AD2 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		5C404B512C95A1D0002F6C50 /* SaveState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveState.swift; sourceTree = "<group>"; };
+		5C404B532C95A3FA002F6C50 /* SavingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingView.swift; sourceTree = "<group>"; };
 		5C4FFA1A2C94B5A1002BD7BC /* PlanDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanDetailView.swift; sourceTree = "<group>"; };
 		5C4FFA1C2C94BC2B002BD7BC /* FlightDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightDetailView.swift; sourceTree = "<group>"; };
 		5C4FFA202C94C4A9002BD7BC /* AirportMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportMapView.swift; sourceTree = "<group>"; };
@@ -213,6 +217,8 @@
 				5C315C1C2C90ACD400C44F3D /* SearchBar.swift */,
 				5C315C1D2C90ACD400C44F3D /* UnderlineTextField.swift */,
 				5C1876412C94813400816366 /* MapAnnotationView.swift */,
+				5C404B512C95A1D0002F6C50 /* SaveState.swift */,
+				5C404B532C95A3FA002F6C50 /* SavingView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -611,12 +617,14 @@
 				5C315C762C90ACD400C44F3D /* SearchLocationView.swift in Sources */,
 				5C315C782C90ACD400C44F3D /* Flight.swift in Sources */,
 				5C5F2BB12C93590000B1EA2C /* LoadingState.swift in Sources */,
+				5C404B542C95A3FA002F6C50 /* SavingView.swift in Sources */,
 				5C5F2BB22C93590000B1EA2C /* UserService.swift in Sources */,
 				5C315C792C90ACD400C44F3D /* Plan.swift in Sources */,
 				5C1876422C94813400816366 /* MapAnnotationView.swift in Sources */,
 				5C315C612C90ACD400C44F3D /* ForgotPasswordView.swift in Sources */,
 				5C315C602C90ACD400C44F3D /* AuthViewModel.swift in Sources */,
 				5C315C6C2C90ACD400C44F3D /* AddActivityView.swift in Sources */,
+				5C404B522C95A1D0002F6C50 /* SaveState.swift in Sources */,
 				5C315C6D2C90ACD400C44F3D /* AddFlightView.swift in Sources */,
 				5C315C5B2C90ACD400C44F3D /* InputView.swift in Sources */,
 				5C5F2BAE2C93590000B1EA2C /* AirlineError.swift in Sources */,
