@@ -13,6 +13,9 @@ struct ProfileView: View {
     
     @State private var showDeleteAlert = false
     @State private var showErrorAlert = false
+    @State private var showPasswordAlert = false
+    @State private var password = ""
+    
     var body: some View {
             NavigationStack {
                 if let user = userService.currentUser {
@@ -45,8 +48,13 @@ struct ProfileView: View {
                             .padding(.horizontal)
                         
                         List {
-                            
-                            Text("Change Password")
+                            NavigationLink(destination: ChangePasswordView(user: user)) {
+                                HStack(spacing: 10) {
+                                    Image(systemName: "key.fill")
+                                    Text("Change Password")
+                                }
+                            }
+                            .buttonStyle(.plain)
                             Button(role: .destructive) {
                                 showDeleteAlert = true
                             } label: {
@@ -63,14 +71,35 @@ struct ProfileView: View {
                     
                     Spacer()
                 }
+                .onReceive(settingsViewModel.$error, perform: { error in
+                    if error != nil {
+                        showErrorAlert = true
+                    }
+                })
+                .alert(isPresented: $showErrorAlert) {
+                    Alert(title: Text("Error"), message: Text("\(settingsViewModel.error?.localizedDescription ?? "Unknown Error")"))
+                }
                 .alert("Delete Account", isPresented: $showDeleteAlert) {
                     Button("Delete", role: .destructive) {
                         Task {
-                            try await settingsViewModel.delete()
+                            showPasswordAlert = true
                         }
                     }
                 } message: {
                     Text("I understand that by deleting my account, all account information, including my trip data will be permanently deleted. This cannot be undone and my data cannot be recovered.")
+                }
+                .alert("Confirm Password", isPresented: $showPasswordAlert) {
+                    SecureField("Password", text: $password)
+                        .textContentType(.password)
+                    
+                    Button("Cancel", role: .cancel) { password = "" }
+                    Button("Confirm", role: .destructive) {
+                        Task {
+                            try await settingsViewModel.delete(email: user.email, password: password)
+                        }
+                    }
+                } message: {
+                    Text("Please enter your password to confirm account deletion")
                 }
                 .navigationBarTitle("Profile", displayMode: .inline)
             }

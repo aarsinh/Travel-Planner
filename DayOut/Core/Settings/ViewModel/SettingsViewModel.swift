@@ -53,7 +53,20 @@ class SettingsViewModel: ObservableObject {
         print("signed out")
     }
     
-    func delete() async throws {
-        try await userService.delete()
+    func delete(email: String, password: String) async throws {
+        do {
+            try await userService.reauthenticateUser(email: email, password: password)
+            try await userService.delete()
+        } catch {
+            self.error = error
+        }
+    }
+    
+    func changePassword(email: String, oldPassword: String, newPassword: String) async throws {
+        do {
+            try await userService.updatePassword(email: email, oldPassword: oldPassword, newPassword: newPassword)
+        } catch {
+            self.error = error
+        }
     }
 }

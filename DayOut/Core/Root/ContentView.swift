@@ -14,9 +14,9 @@ struct ContentView: View {
     var body: some View {
         TabView {
             TripsListView()
-                .tabItem { Label("Trips", systemImage: "airplane")}
+                .tabItem { Label("Trips", systemImage: "airplane") }
             SettingsView()
-                .tabItem { Label("Settings", systemImage: "gear")}
+                .tabItem { Label("Settings", systemImage: "gear") }
             
         }
     }

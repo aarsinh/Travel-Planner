@@ -81,12 +81,58 @@ class UserService: ObservableObject {
     }
 
     
-    func resetPassword(withEmail email: String) {
-        Auth.auth().sendPasswordReset(withEmail: email) { error in
-            if let error = error {
-                print(error)
-            } else {
-                
+    func resetPassword(withEmail email: String) async throws {
+        do {
+            try await Auth.auth().sendPasswordReset(withEmail: email)
+        } catch let error as NSError {
+            switch AuthErrorCode.Code(rawValue: error.code) {
+            case .invalidEmail:
+                throw FirebaseError.invalidCredentials
+            case .userNotFound:
+                throw FirebaseError.invalidUser
+            case .networkError:
+                throw FirebaseError.serverError
+            default:
+                throw FirebaseError.unknown(error)
+            }
+        }
+    }
+    
+    func reauthenticateUser(email: String, password: String) async throws {
+        guard let userSession else { throw FirebaseError.invalidUser }
+        let credential = EmailAuthProvider.credential(withEmail: email, password: password)
+        
+        do {
+            try await userSession.reauthenticate(with: credential)
+        } catch let error as NSError {
+            switch AuthErrorCode.Code(rawValue: error.code) {
+            case .invalidEmail:
+                throw FirebaseError.invalidCredentials
+            case .wrongPassword:
+                throw FirebaseError.invalidCredentials
+            case .networkError:
+                throw FirebaseError.serverError
+            default:
+                throw FirebaseError.unknown(error)
+            }
+        }
+    }
+    
+    func updatePassword(email: String, oldPassword: String, newPassword: String) async throws {
+        guard let userSession else { throw FirebaseError.invalidUser }
+        do {
+            try await reauthenticateUser(email: email, password: oldPassword)
+            try await userSession.updatePassword(to: newPassword)
+        } catch let error as NSError {
+            switch AuthErrorCode.Code(rawValue: error.code) {
+            case .invalidEmail:
+                throw FirebaseError.invalidCredentials
+            case .wrongPassword:
+                throw FirebaseError.invalidCredentials
+            case .networkError:
+                throw FirebaseError.serverError
+            default:
+                throw FirebaseError.unknown(error)
             }
         }
     }
@@ -96,7 +142,6 @@ class UserService: ObservableObject {
         guard let snapshot = try? await db.collection("users").document(uid).getDocument() else { throw FirebaseError.invalidData }
         let user = try? snapshot.data(as: User.self)
         self.currentUser = user
-//        print("DEBUG: current user is \(String(describing: self.currentUser))")
     }
     
     func updateUserProfileImage(withURL url: String) async throws {
@@ -162,7 +207,7 @@ class UserService: ObservableObject {
             "type": plan.type,
             "name": plan.name,
             "startDate": plan.startDate,
-            "endDate": plan.endDate ?? Date(),
+            "endDate": plan.endDate ?? plan.startDate,
             "address": plan.address ?? "",
             "email": plan.email ?? "",
             "phone": plan.phone ?? "",

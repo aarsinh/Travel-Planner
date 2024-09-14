@@ -208,7 +208,8 @@ class TripViewModel: NSObject, ObservableObject, MKLocalSearchCompleterDelegate 
     }
     
     func openMaps(address: String) {
-        let url = URL(string: "http://maps.apple.com/?address=\(address)")!
+        let encodedAddress = address.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let url = URL(string: "http://maps.apple.com/?q=\(encodedAddress)")!
         UIApplication.shared.open(url)
     }
     

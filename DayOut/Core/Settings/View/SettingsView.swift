@@ -58,12 +58,7 @@ struct SettingsView: View {
                             
                         }
                     }
-                    
-                    Section("Preferences") {
-                        NavigationLink(destination: NotificationsView()) {
-                            Text("Notifications")
-                        }
-                    }
+
                     Section("Account") {
                         Button(role: .destructive) {
                             Task {

@@ -21,7 +21,9 @@ struct ForgotPasswordView: View {
                 InputView(text: $email, placeholder: "Enter your email address", textAutocapitalization: .never, keyboard: .emailAddress)
                 
                 Button {
-                    userService.resetPassword(withEmail: email)
+                    Task {
+                       try await userService.resetPassword(withEmail: email)
+                    }
                     showSentAlert = true
                 } label: {
                     Text("Continue")

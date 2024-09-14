@@ -22,7 +22,6 @@
 		5C315C622C90ACD400C44F3D /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C315C222C90ACD400C44F3D /* LoginView.swift */; };
 		5C315C632C90ACD400C44F3D /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C315C232C90ACD400C44F3D /* SignUpView.swift */; };
 		5C315C652C90ACD400C44F3D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C315C272C90ACD400C44F3D /* ContentView.swift */; };
-		5C315C662C90ACD400C44F3D /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C315C292C90ACD400C44F3D /* NotificationsView.swift */; };
 		5C315C672C90ACD400C44F3D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C315C2A2C90ACD400C44F3D /* ProfileView.swift */; };
 		5C315C682C90ACD400C44F3D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C315C2B2C90ACD400C44F3D /* SettingsView.swift */; };
 		5C315C692C90ACD400C44F3D /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C315C2D2C90ACD400C44F3D /* SettingsViewModel.swift */; };
@@ -52,6 +51,8 @@
 		5C3D9B4A2C93390B006B2AD2 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3D9B492C93390B006B2AD2 /* MapView.swift */; };
 		5C404B522C95A1D0002F6C50 /* SaveState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C404B512C95A1D0002F6C50 /* SaveState.swift */; };
 		5C404B542C95A3FA002F6C50 /* SavingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C404B532C95A3FA002F6C50 /* SavingView.swift */; };
+		5C404B562C95C2A6002F6C50 /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C404B552C95C2A6002F6C50 /* LineView.swift */; };
+		5C43A1FB2C95D62F0086D356 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C43A1FA2C95D62F0086D356 /* ChangePasswordView.swift */; };
 		5C4FFA1B2C94B5A1002BD7BC /* PlanDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4FFA1A2C94B5A1002BD7BC /* PlanDetailView.swift */; };
 		5C4FFA1D2C94BC2B002BD7BC /* FlightDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4FFA1C2C94BC2B002BD7BC /* FlightDetailView.swift */; };
 		5C4FFA212C94C4A9002BD7BC /* AirportMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4FFA202C94C4A9002BD7BC /* AirportMapView.swift */; };
@@ -103,7 +104,6 @@
 		5C315C222C90ACD400C44F3D /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		5C315C232C90ACD400C44F3D /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		5C315C272C90ACD400C44F3D /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		5C315C292C90ACD400C44F3D /* NotificationsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		5C315C2A2C90ACD400C44F3D /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		5C315C2B2C90ACD400C44F3D /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		5C315C2D2C90ACD400C44F3D /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
@@ -133,6 +133,8 @@
 		5C3D9B492C93390B006B2AD2 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		5C404B512C95A1D0002F6C50 /* SaveState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveState.swift; sourceTree = "<group>"; };
 		5C404B532C95A3FA002F6C50 /* SavingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingView.swift; sourceTree = "<group>"; };
+		5C404B552C95C2A6002F6C50 /* LineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
+		5C43A1FA2C95D62F0086D356 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 		5C4FFA1A2C94B5A1002BD7BC /* PlanDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanDetailView.swift; sourceTree = "<group>"; };
 		5C4FFA1C2C94BC2B002BD7BC /* FlightDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightDetailView.swift; sourceTree = "<group>"; };
 		5C4FFA202C94C4A9002BD7BC /* AirportMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportMapView.swift; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 				5C1876412C94813400816366 /* MapAnnotationView.swift */,
 				5C404B512C95A1D0002F6C50 /* SaveState.swift */,
 				5C404B532C95A3FA002F6C50 /* SavingView.swift */,
+				5C404B552C95C2A6002F6C50 /* LineView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -261,9 +264,9 @@
 		5C315C2C2C90ACD400C44F3D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				5C315C292C90ACD400C44F3D /* NotificationsView.swift */,
 				5C315C2A2C90ACD400C44F3D /* ProfileView.swift */,
 				5C315C2B2C90ACD400C44F3D /* SettingsView.swift */,
+				5C43A1FA2C95D62F0086D356 /* ChangePasswordView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -610,12 +613,13 @@
 				5C3D9B482C933906006B2AD2 /* MapViewModel.swift in Sources */,
 				5C315C592C90ACD400C44F3D /* CustomList.swift in Sources */,
 				5C315C672C90ACD400C44F3D /* ProfileView.swift in Sources */,
-				5C315C662C90ACD400C44F3D /* NotificationsView.swift in Sources */,
 				5C315C632C90ACD400C44F3D /* SignUpView.swift in Sources */,
+				5C404B562C95C2A6002F6C50 /* LineView.swift in Sources */,
 				5C315C742C90ACD400C44F3D /* SearchAddressView.swift in Sources */,
 				5C315C5C2C90ACD400C44F3D /* ProfileEntry.swift in Sources */,
 				5C315C762C90ACD400C44F3D /* SearchLocationView.swift in Sources */,
 				5C315C782C90ACD400C44F3D /* Flight.swift in Sources */,
+				5C43A1FB2C95D62F0086D356 /* ChangePasswordView.swift in Sources */,
 				5C5F2BB12C93590000B1EA2C /* LoadingState.swift in Sources */,
 				5C404B542C95A3FA002F6C50 /* SavingView.swift in Sources */,
 				5C5F2BB22C93590000B1EA2C /* UserService.swift in Sources */,
