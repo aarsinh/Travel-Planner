@@ -4,6 +4,7 @@
 //
 //  Created by Aarav Sinha on 22/08/24.
 //
+
 import SwiftUI
 
 struct TripView: View {
@@ -13,8 +14,9 @@ struct TripView: View {
     @EnvironmentObject var viewModel: TripViewModel
     @State private var addingPlans = false
     @State private var editingTrip = false
+    @State private var tripPlans: [Plan] = []
+    @State private var tripId: String = ""
 
-    
     private var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEE d MMMM, yyyy"
@@ -83,35 +85,17 @@ struct TripView: View {
                                     .padding(.top)
                                 
                                     ForEach(groupedPlans[date] ?? []) { plan in
-                                        HStack {
-                                            Image(systemName: viewModel.planIcon(for: plan.type))
-                                                .resizable()
-                                                .frame(width: 40, height: 40)
-                                                .padding(.horizontal, 7)
-                                            
-                                            VStack(alignment: .leading) {
-                                                if plan.type == "Flight" {
-                                                    if let route = plan.route, let flightNumber = plan.flightNumber {
-                                                        Text(!route.isEmpty ? route : "Flight")
-                                                            .font(.headline)
-                                                        
-                                                        Text("\(plan.name) \(flightNumber)")
-                                                    }
-                                                } else {
-                                                    if let address = plan.address {
-                                                        Text(plan.name)
-                                                            .font(.headline)
-                                                        
-                                                        Text(address)
-                                                    }
-                                                }
+                                        if plan.type == "Flight" {
+                                            NavigationLink(destination: FlightDetailView(flight: plan, tripId: tripId)) {
+                                                PlanDetail(plan: plan)
                                             }
-                                            .padding(.trailing, 7)
+                                        } else {
+                                            NavigationLink(destination: PlanDetailView(plan: plan, tripId: tripId)) {
+                                                PlanDetail(plan: plan)
+                                            }
                                         }
-                                        .padding(.top, 5)
                                     }
-                                    
-                                    
+                                    .buttonStyle(.plain)
                                 }
                             }
                         }
@@ -119,6 +103,7 @@ struct TripView: View {
                     .onAppear {
                         Task {
                             if let tripId = try await viewModel.fetchTripId(by: selectedTrip.id) {
+                                self.tripId = tripId
                                 selectedTrip = try await viewModel.refreshTrip(id: tripId)
                             }
                         }
@@ -130,6 +115,7 @@ struct TripView: View {
                             Task {
                                 if let tripId = try await viewModel.fetchTripId(by: selectedTrip.id) {
                                     selectedTrip = try await viewModel.refreshTrip(id: tripId)
+                                    tripPlans = selectedTrip.plans
                                 }
                             }
                         }
@@ -158,8 +144,8 @@ struct TripView: View {
                             Task {
                                 if let tripId = try await viewModel.fetchTripId(by: selectedTrip.id) {
                                     try await viewModel.deleteTrip(withId: tripId)
+                                    dismiss()
                                 }
-                                dismiss()
                             }
                         } label: {
                             Label("Delete", systemImage: "trash")
@@ -190,6 +176,39 @@ struct TripView: View {
                 }
             )
         }
+    }
+}
+
+struct PlanDetail: View {
+    let plan: Plan
+    @EnvironmentObject var viewModel: TripViewModel
+    var body: some View {
+        HStack {
+            Image(systemName: viewModel.planIcon(for: plan.type))
+                .resizable()
+                .frame(width: 40, height: 40)
+                .padding(.horizontal, 7)
+            
+            VStack(alignment: .leading) {
+                if plan.type == "Flight" {
+                    if let route = plan.route, let flightNumber = plan.flightNumber {
+                        Text(!route.isEmpty ? route : "Flight")
+                            .font(.headline)
+                        
+                        Text("\(plan.name) \(flightNumber)")
+                    }
+                } else {
+                    if let address = plan.address {
+                        Text(plan.name)
+                            .font(.headline)
+                        
+                        Text(address)
+                    }
+                }
+            }
+            .padding(.trailing, 7)
+        }
+        .padding(.top, 5)
     }
 }
 

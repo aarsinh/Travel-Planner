@@ -64,7 +64,6 @@ struct AddTripView: View {
                     .datePickerStyle(.graphical)
                     .padding()
                     .onChange(of: startDate) { oldValue, newValue in
-//                        print("start date changed to \(dateFormatter.string(from: newValue)) from \(dateFormatter.string(from:oldValue))")
                         startDateText = viewModel.dateFormatter.string(from: newValue)
                         showStartDatePicker = false
                     }
@@ -94,7 +93,6 @@ struct AddTripView: View {
                     .padding()
                     .onChange(of: endDate) { oldValue, newValue in
                         endDateText = viewModel.dateFormatter.string(from: newValue)
-//                        print("end date changed to \(dateFormatter.string(from: newValue)) from \(dateFormatter.string(from: oldValue))")
                         showEndDatePicker = false
                     }
                 }
@@ -116,6 +114,9 @@ struct AddTripView: View {
                         .disabled(!formIsValid)
                     }
                 }
+        }
+        .onAppear {
+            viewModel.address = ""
         }
         .padding(10)
         .textFieldStyle(UnderlineTextField())

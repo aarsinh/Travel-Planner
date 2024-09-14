@@ -40,7 +40,7 @@ struct SearchAirlines: View {
         }
         .onReceive(viewModel.$error) { error in
             if error != nil {
-                showAlert.toggle()
+                showAlert = true
             }
         }
         .alert(isPresented: $showAlert, content: {

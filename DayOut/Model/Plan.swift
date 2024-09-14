@@ -31,5 +31,5 @@ struct LocationCoordinates: Codable, Hashable {
 }
 
 extension Plan {
-    static let example = Plan(id: "first", type: "Flight", name: "Flight", startDate: Date.now, endDate: Date.now, address: "Address", email: "email@email.com", phone: "1010101010", flightNumber: "12", route: "HYD - BLR", departureCity: "Hyderabad", arrivalCity: "Bangalore", location: LocationCoordinates(latitude: 0, longitude: 0), departureLocation: LocationCoordinates(latitude: 0, longitude: 0), arrivalLocation: LocationCoordinates(latitude: 0, longitude: 0))
+    static let example = Plan(id: "first", type: "Flight", name: "Flight", startDate: Date.now, endDate: Date.now, address: "Address", email: "email@email.com", phone: "8147137207", flightNumber: "12", route: "HYD - BLR", departureCity: "Hyderabad", arrivalCity: "Bangalore", location: LocationCoordinates(latitude: 0, longitude: 0), departureLocation: LocationCoordinates(latitude: 0, longitude: 0), arrivalLocation: LocationCoordinates(latitude: 0, longitude: 0))
 }

@@ -11,7 +11,7 @@ import MapKit
 struct AirportMapView: View {
     let airportCoordinates: CLLocationCoordinate2D
     @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 0, longitude: 0),
-                                                   span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1))
+                                                   span: MKCoordinateSpan(latitudeDelta: 0.15, longitudeDelta: 0.15))
     var body: some View {
         Map {
             Annotation("", coordinate: airportCoordinates) {

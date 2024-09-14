@@ -179,6 +179,14 @@ class TripViewModel: NSObject, ObservableObject, MKLocalSearchCompleterDelegate 
         }
     }
     
+    func deletePlan(tripId: String, planId: String) async throws {
+        do {
+            try await userService.deletePlan(from: tripId, planId: planId)
+        } catch {
+            self.error = error
+        }
+    }
+    
     func planIcon(for type: String) -> String {
         switch type {
         case "Flight": return "airplane.circle.fill"
@@ -187,5 +195,24 @@ class TripViewModel: NSObject, ObservableObject, MKLocalSearchCompleterDelegate 
         case "Activity": return "figure.walk.circle.fill"
         default: return "circle.fill"
         } 
+    }
+    
+    func makeCall(number: String) {
+        let dash = CharacterSet(charactersIn: "-")
+        let cleanString = number.trimmingCharacters(in: dash)
+        let tel = "tel://"
+        let formattedString = tel + cleanString
+        let url = URL(string: formattedString)!
+        UIApplication.shared.open(url)
+    }
+    
+    func openMaps(address: String) {
+        let url = URL(string: "http://maps.apple.com/?address=\(address)")!
+        UIApplication.shared.open(url)
+    }
+    
+    func mailTo(_ email: String) {
+        let url = URL(string: "mailto:\(email)")!
+        UIApplication.shared.open(url)
     }
 }

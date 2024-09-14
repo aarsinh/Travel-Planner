@@ -10,17 +10,24 @@ import CoreLocation
 
 struct FlightDetailView: View {
     let flight: Plan
+    let tripId: String
+    @EnvironmentObject var viewModel: TripViewModel
     @Environment(\.dismiss) var dismiss
+    
+    @State private var showAlert = false
     var body: some View {
         NavigationStack {
             HStack {
                 VStack(alignment: .leading) {
+                    Text(flight.route ?? "Flight")
+                        .font(.title2.bold())
+                        .padding(.horizontal)
                     Text(flight.name)
-                        .padding(.top, 35)
+                        
                         .padding(.horizontal)
                     
                     ZStack(alignment: .leading) {
-                        Text("Date")
+                        Text(viewModel.dateFormatter.string(from: flight.startDate))
                             .bold()
                             .padding(.horizontal)
                         
@@ -58,25 +65,24 @@ struct FlightDetailView: View {
 
                 Spacer()
                     .toolbar {
-                        ToolbarItem(placement: .topBarLeading) {
-                            Text(flight.route ?? "Flight")
-                                .font(.title)
-                                .bold()
-                                .padding(.top, 75)
-                        }
-                        
                         ToolbarItem(placement: .topBarTrailing) {
-                            Menu {
-                                Button(role: .destructive) {
-                                    
-                                    dismiss()
-                                } label: {
-                                    Label("Delete Plan", systemImage: "trash")
-                                }
+                            Button(role: .destructive) {
+                                showAlert = true
                             } label: {
-                                Label("Menu", systemImage: "ellipsis.circle")
+                                Label("Delete Plan", systemImage: "trash")
                             }
                         }
+                    }
+                    .alert("Are you sure?", isPresented: $showAlert) {
+                        Button("Cancel", role: .cancel) { }
+                        Button("Delete", role: .destructive) {
+                            Task {
+                                try await viewModel.deletePlan(tripId: tripId,planId: flight.id)
+                            }
+                            dismiss()
+                        }
+                    } message: {
+                        Text("Deleting this plan will permanently remove it from your trip.")
                     }
             }
         }
@@ -84,5 +90,5 @@ struct FlightDetailView: View {
 }
 
 #Preview {
-    FlightDetailView(flight: .example)
+    FlightDetailView(flight: .example, tripId: "abcd")
 }
