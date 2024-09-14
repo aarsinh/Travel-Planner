@@ -19,3 +19,11 @@ Travel Planner is an iOS application designed to help users keep track of their 
 4. Wait for dependencies to download, and install Simulator if required.  
 
 5. Click on Run.
+
+### OR
+
+1. Open Xcode
+2. Click on "Clone Git Repository..." and paste the repository link.
+3. Follow steps 4 and 5.
+
+
