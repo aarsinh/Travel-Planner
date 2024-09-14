@@ -15,4 +15,7 @@ Travel Planner is an iOS application designed to help users keep track of their 
 
 3. Open the project in Xcode  
  `open DayOut.xcodeproj`
-   
+
+4. Wait for dependencies to download, and install Simulator if required.  
+
+5. Click on Run.
