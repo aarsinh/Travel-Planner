@@ -7,12 +7,12 @@ Travel Planner is an iOS application designed to help users keep track of their 
 - Swift 5.9+
 
 ## Installation
-1. Clone the repository
+1. Clone the repository  
 `git clone https://github.com/aarsinh/Travel-Planner`
 
-2. Navigate to the directory
+2. Navigate to the directory  
 `cd Travel-Planner`
 
-3. Open the project in Xcode
+3. Open the project in Xcode  
  `open DayOut.xcodeproj`
    
