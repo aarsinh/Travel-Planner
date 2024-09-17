@@ -88,8 +88,10 @@ struct AddAccommodationView: View {
                 TextField("Address", text: $viewModel.address)
                     .disabled(true)
             }
-            TextField("Phone", text: $phoneNumber)
+            TextField("Phone", text: $viewModel.phoneNumber)
                 .keyboardType(.decimalPad)
+            
+            TextField("Website", text: $viewModel.website)
             TextField("Email", text: $email)
             
             
@@ -104,7 +106,7 @@ struct AddAccommodationView: View {
                             Task {
                                 saveState = .saving
                                 if let tripId = try await viewModel.fetchTripId(by: trip.id) {
-                                    let plan = Plan(id: UUID().uuidString, type: "Accommodation", name: accommodationName, startDate: checkinDate, endDate: checkoutDate, address: viewModel.address, email: email, phone: phoneNumber, location: LocationCoordinates(latitude: viewModel.selectedCoordinates.latitude, longitude: viewModel.selectedCoordinates.longitude))
+                                    let plan = Plan(id: UUID().uuidString, type: "Accommodation", name: accommodationName, startDate: checkinDate, endDate: checkoutDate, address: viewModel.address, email: email, website: viewModel.website, phone: viewModel.phoneNumber, location: LocationCoordinates(latitude: viewModel.selectedCoordinates.latitude, longitude: viewModel.selectedCoordinates.longitude))
                                     try await viewModel.updatePlans(tripId: tripId ,plan: plan)
                                     viewModel.shouldDismissToTripView = true
                                     saveState = .saved
@@ -134,6 +136,8 @@ struct AddAccommodationView: View {
             checkoutDateText = trip.endDate
             checkoutDate = viewModel.dateFormatter.date(from: checkoutDateText) ?? Date.now
             viewModel.address = ""
+            viewModel.phoneNumber = ""
+            viewModel.website = ""
         }
         
         if saveState == .saving {

@@ -210,6 +210,7 @@ class UserService: ObservableObject {
             "endDate": plan.endDate ?? plan.startDate,
             "address": plan.address ?? "",
             "email": plan.email ?? "",
+            "website": plan.website ?? "",
             "phone": plan.phone ?? "",
             "flightNumber": plan.flightNumber ?? "" ,
             "route": plan.route ?? "",

@@ -61,38 +61,36 @@ struct PlanDetailView: View {
                     }
                     
                     VStack(alignment: .leading, spacing: 10) {
-                        if let phone = plan.phone, let address = plan.address, let email = plan.email {
+                        if let phone = plan.phone, let address = plan.address, let email = plan.email, let website = plan.website {
                             if !phone.isEmpty {
-                                Button {
-                                    viewModel.makeCall(number: phone)
-                                } label: {
-                                    HStack(spacing: 10) {
-                                        Image(systemName: "phone.fill")
-                                        Text(phone)
-                                    }
+                                let dash = CharacterSet(charactersIn: "-")
+                                let cleanString = phone.trimmingCharacters(in: dash)
+                                let tel = "tel://"
+                                let formattedString = tel + cleanString
+                                
+                                Link(destination: URL(string: formattedString)!) {
+                                    Label(phone, systemImage: "phone.fill")
                                 }
                             }
                             
                             if !address.isEmpty {
-                                Button {
-                                    viewModel.openMaps(address: address)
-                                } label: {
-                                    HStack(spacing: 10) {
-                                        Image(systemName: "mappin")
-                                        Text(address)
-                                            .multilineTextAlignment(.leading)
-                                    }
+                                let encodedAddress = address.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+                                
+                                Link(destination: URL(string: "http://maps.apple.com/?q=\(encodedAddress)")!) {
+                                    Label(address, systemImage: "mappin")
+                                        .multilineTextAlignment(.leading)
+                                }
+                            }
+                            
+                            if !website.isEmpty {
+                                Link(destination: URL(string: website)!) {
+                                    Label(website, systemImage: "globe")
                                 }
                             }
                             
                             if !email.isEmpty {
-                                Button {
-                                    viewModel.mailTo(email)
-                                } label: {
-                                    HStack(spacing: 10) {
-                                        Image(systemName: "envelope.fill")
-                                        Text(email)
-                                    }
+                                Link(destination: URL(string: "mailto:\(email)")!) {
+                                    Label(email, systemImage: "envelope.fill")
                                 }
                             }
                         }
