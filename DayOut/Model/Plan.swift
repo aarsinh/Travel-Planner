@@ -15,6 +15,7 @@ struct Plan: Codable, Identifiable, Hashable {
     var endDate: Date?
     var address: String?
     var email: String?
+    var website: String?
     var phone: String?
     var flightNumber: String?
     var route: String?

@@ -40,6 +40,9 @@ class TripViewModel: NSObject, ObservableObject, MKLocalSearchCompleterDelegate 
     @Published var trips: [Trip] = []
     @Published var shouldDismissToTripView = false
     @Published var showErrorAlert = false
+    @Published var phoneNumber = ""
+    @Published var website = ""
+    @Published var email = ""
     private var completer: MKLocalSearchCompleter
     
     var dateFormatter: DateFormatter {
@@ -66,8 +69,19 @@ class TripViewModel: NSObject, ObservableObject, MKLocalSearchCompleterDelegate 
         
         let searchRequest = MKLocalSearch.Request(completion: completion)
         let search = MKLocalSearch(request: searchRequest)
-        search.start { response, error in
-            if let placemark = response?.mapItems.first?.placemark {
+        search.start { [weak self] response, error in
+            guard let self = self else { return }
+            
+            if let mapItems = response?.mapItems.first {
+                if let phoneNumber = mapItems.phoneNumber {
+                    self.phoneNumber = phoneNumber
+                }
+                
+                if let website = mapItems.url {
+                    self.website = website.absoluteString
+                }
+                
+                let placemark = mapItems.placemark
                 let coordinate = placemark.coordinate
                 
                 let address = [
@@ -81,6 +95,7 @@ class TripViewModel: NSObject, ObservableObject, MKLocalSearchCompleterDelegate 
                     .compactMap{ $0 }
                     .joined(separator: ", ")
                 completionHandler(coordinate, address)
+                
             } else {
                 completionHandler(nil, nil)
             }
@@ -196,25 +211,5 @@ class TripViewModel: NSObject, ObservableObject, MKLocalSearchCompleterDelegate 
         case "Activity": return "figure.walk.circle.fill"
         default: return "circle.fill"
         } 
-    }
-    
-    func makeCall(number: String) {
-        let dash = CharacterSet(charactersIn: "-")
-        let cleanString = number.trimmingCharacters(in: dash)
-        let tel = "tel://"
-        let formattedString = tel + cleanString
-        let url = URL(string: formattedString)!
-        UIApplication.shared.open(url)
-    }
-    
-    func openMaps(address: String) {
-        let encodedAddress = address.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        let url = URL(string: "http://maps.apple.com/?q=\(encodedAddress)")!
-        UIApplication.shared.open(url)
-    }
-    
-    func mailTo(_ email: String) {
-        let url = URL(string: "mailto:\(email)")!
-        UIApplication.shared.open(url)
     }
 }

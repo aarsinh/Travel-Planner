@@ -18,7 +18,6 @@ struct AddActivityView: View {
     @State private var date = Date.now
     @State private var showingDatePicker = false
     @State private var address = ""
-    @State private var phoneNumber = ""
     @State private var email = ""
     @State private var saveState: SaveState = .idle
     
@@ -67,8 +66,10 @@ struct AddActivityView: View {
                         .disabled(true)
                 }
                 
-                TextField("Phone Number", text: $phoneNumber)
+                TextField("Phone Number", text: $viewModel.phoneNumber)
                     .keyboardType(.decimalPad)
+                
+                TextField("Website", text: $viewModel.website)
                 TextField("Email", text: $email)
                     .keyboardType(.emailAddress)
                 
@@ -83,7 +84,7 @@ struct AddActivityView: View {
                                 Task {
                                     saveState = .saving
                                     if let tripId = try await viewModel.fetchTripId(by: trip.id) {
-                                        let plan = Plan(id: UUID().uuidString, type: "Activity", name: name, startDate: date, address: viewModel.address, email: email, phone: phoneNumber, location: LocationCoordinates(latitude: viewModel.selectedCoordinates.latitude, longitude: viewModel.selectedCoordinates.longitude))
+                                        let plan = Plan(id: UUID().uuidString, type: "Activity", name: name, startDate: date, address: viewModel.address, email: email, website: viewModel.website, phone: viewModel.phoneNumber, location: LocationCoordinates(latitude: viewModel.selectedCoordinates.latitude, longitude: viewModel.selectedCoordinates.longitude))
                                         try await viewModel.updatePlans(tripId: tripId, plan: plan)
                                         viewModel.shouldDismissToTripView = true
                                         saveState = .saved
@@ -109,6 +110,8 @@ struct AddActivityView: View {
                 dateText = trip.startDate
                 date = viewModel.dateFormatter.date(from: dateText) ?? Date.now
                 viewModel.address = ""
+                viewModel.phoneNumber = ""
+                viewModel.website = ""
             }
             
             if saveState == .saving {
