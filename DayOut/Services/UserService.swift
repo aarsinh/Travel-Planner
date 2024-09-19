@@ -144,9 +144,11 @@ class UserService: ObservableObject {
         self.currentUser = user
     }
     
+    
     func updateUserProfileImage(withURL url: String) async throws {
         guard let uid = userSession?.uid else { throw FirebaseError.invalidUser }
-        try await db.collection("users").document(uid).updateData(["profileImageURL": url])
+        let updateData: [String: String] = ["profileImageURL": url]
+        try await db.collection("users").document(uid).updateData(updateData)
         self.currentUser?.profileImageURL = url
     }
     
@@ -236,7 +238,8 @@ class UserService: ObservableObject {
         guard var existingPlans = snapshot.data()?["plans"] as? [[String: Any]] else { throw FirebaseError.invalidData }
         
         existingPlans.append(planData)
-        try await tripRef.updateData(["plans": existingPlans])
+        let newPlans: [String: Any] = ["plans": existingPlans]
+        try await tripRef.updateData(newPlans)
         
         print("DEBUG: Plans updated succesfully.")
     }

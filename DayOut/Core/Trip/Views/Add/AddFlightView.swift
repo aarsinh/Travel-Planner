@@ -82,14 +82,17 @@ struct AddFlightView: View {
                             typingTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { timer in
                                 Task {
                                     do {
-                                        route = try await viewModel.fetchRoute(airlineIcao: viewModel.airlineIcao, flightNumber: flightNumber)
-                                        if let route = route {
+                                        let route = try await viewModel.fetchRoute(airlineIcao: viewModel.airlineIcao, flightNumber: flightNumber)
+                                        await MainActor.run {
+                                            self.route = route
                                             depIata = route.response.flightroute.origin.iataCode
                                             arrIata = route.response.flightroute.destination.iataCode
                                             routeText = "\(depIata) - \(arrIata)"
                                         }
                                     } catch {
-                                        showFlightUnavailableView = true
+                                        await MainActor.run {
+                                            showFlightUnavailableView = true
+                                        }
                                     }
                                 }
                             })
