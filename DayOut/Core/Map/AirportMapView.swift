@@ -10,10 +10,9 @@ import MapKit
 
 struct AirportMapView: View {
     let airportCoordinates: CLLocationCoordinate2D
-    @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 0, longitude: 0),
-                                                   span: MKCoordinateSpan(latitudeDelta: 0.15, longitudeDelta: 0.15))
+    @State private var position: MapCameraPosition = .automatic
     var body: some View {
-        Map {
+        Map(position: $position) {
             Annotation("", coordinate: airportCoordinates) {
                 VStack {
                     Image(systemName: "airplane.circle.fill")
@@ -30,8 +29,10 @@ struct AirportMapView: View {
                 }
             }
         }
+        .mapStyle(.imagery)
         .onAppear {
-            region.center = airportCoordinates
+            let region = MKCoordinateRegion(center: airportCoordinates, span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
+            position = .region(region)
         }
     }
 }
