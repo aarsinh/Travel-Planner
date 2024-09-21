@@ -22,8 +22,8 @@ struct FlightDetailView: View {
                     Text(flight.route ?? "Flight")
                         .font(.title2.bold())
                         .padding(.horizontal)
-                    Text(flight.name)
-                        
+                    
+                    Text("\(flight.name) \(flight.flightNumber ?? "")")
                         .padding(.horizontal)
                     
                     ZStack(alignment: .leading) {
