@@ -24,20 +24,8 @@ struct TripView: View {
         return formatter
     }
     
-    var groupedPlans: [String: [Plan]] {
-        Dictionary(grouping: selectedTrip.plans) { plan in
-            plan.startDate.formatted(date: .complete, time: .omitted)
-        }
-    }
-    
-    var sortedDates: [String] {
-        groupedPlans.keys.compactMap { dateString in
-            dateFormatter.date(from: dateString)
-        }
-        .sorted()
-        .compactMap { date in
-            dateFormatter.string(from: date)
-        }
+    var sortedPlans: [Plan] {
+        selectedTrip.plans.sorted { $0.startDate < $1.startDate }
     }
     
     var body: some View {
@@ -72,33 +60,32 @@ struct TripView: View {
                                 }
                                 .padding(.top, 30)
                             } else {
-                                ForEach(sortedDates, id: \.self) { date in
-                                    VStack(alignment: .leading) {
-                                        
-                                        ZStack(alignment: .center) {
-                                            Rectangle()
-                                                .frame(height: 35)
-                                                .foregroundStyle(.secondary.opacity(0.4))
-                                            
-                                            Text("\(date)")
-                                                .font(.system(size: 14))
-                                                .bold()
-                                        }
-                                        .padding(.top)
-                                        
-                                        ForEach(groupedPlans[date] ?? []) { plan in
-                                            if plan.type == "Flight" {
-                                                NavigationLink(destination: FlightDetailView(flight: plan, tripId: tripId)) {
-                                                    PlanDetail(plan: plan)
-                                                }
-                                            } else {
-                                                NavigationLink(destination: PlanDetailView(plan: plan, tripId: tripId)) {
-                                                    PlanDetail(plan: plan)
-                                                }
+                                ForEach(Array(sortedPlans.enumerated()), id: \.element.id) { index, plan in
+                                    let showDateBanner = index == 0 || plan.startDate != sortedPlans[index - 1].startDate
+
+                                    VStack(alignment: .leading, spacing: 6) {
+                                        if showDateBanner {
+                                            ZStack {
+                                                Rectangle()
+                                                    .frame(height: 35)
+                                                    .foregroundStyle(.secondary.opacity(0.4))
+                                                Text(dateFormatter.string(from: plan.startDate))
+                                                    .font(.system(size: 14))
+                                                    .bold()
                                             }
+                                            .padding(.top)
+                                        }
+
+                                        NavigationLink(
+                                            destination: plan.type == "Flight"
+                                                ? AnyView(FlightDetailView(flight: plan, tripId: tripId))
+                                                : AnyView(PlanDetailView(plan: plan, tripId: tripId))
+                                        ) {
+                                            PlanDetail(plan: plan)
                                         }
                                         .buttonStyle(.plain)
                                     }
+                                    .padding(.horizontal)
                                 }
                             }
                         }
