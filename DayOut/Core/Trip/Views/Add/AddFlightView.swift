@@ -146,8 +146,8 @@ struct AddFlightView: View {
                                                         route: routeText,
                                                         departureCity: depAirport[0].city,
                                                         arrivalCity: arrAirport[0].city,
-                                                        departureLocation: LocationCoordinates(latitude: Double(depAirport[0].latitude) ?? 0, longitude: Double(depAirport[0].longitude) ?? 0),
-                                                        arrivalLocation: LocationCoordinates(latitude: Double(arrAirport[0].latitude) ?? 0, longitude: Double(arrAirport[0].longitude) ?? 0)
+                                                        departureLocation: LocationCoordinates(latitude: depAirport[0].latitude, longitude: depAirport[0].longitude),
+                                                        arrivalLocation: LocationCoordinates(latitude: arrAirport[0].latitude, longitude: arrAirport[0].longitude)
                                         )
                                         
                                         try await viewModel.updatePlans(tripId: tripId, plan: plan)

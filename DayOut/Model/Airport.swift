@@ -11,6 +11,6 @@ struct Airport: Codable {
     let iata: String
     let name: String
     let city: String
-    let latitude: String
-    let longitude: String
+    let latitude: Double
+    let longitude: Double
 }
